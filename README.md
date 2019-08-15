@@ -1,6 +1,6 @@
 # Solving Algorithm Problems
 
-you can search these problems with number or text at the website
+you can search these problems with number or title through the website
 
 - [Baekjoon](https://www.acmicpc.net/)
 
