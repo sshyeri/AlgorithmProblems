@@ -1,4 +1,4 @@
-# Solving Algorithm Problems
+# Algorithm Problems what I solved
 
 you can search these problems with number or title through the website
 
