@@ -1,6 +1,6 @@
 # Algorithm Problems what I solved
 
-you can search these problems with number or title through the website
+you can search the problems with number or title on these websites
 
 - [Baekjoon](https://www.acmicpc.net/)
 
