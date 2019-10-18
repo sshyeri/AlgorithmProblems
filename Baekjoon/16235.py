@@ -6,45 +6,51 @@ def init():
 
 N, M, K = map(int, input().split())
 A = [list(map(int, input().split())) for _ in range(N)]
-trees = [init() for _ in range(M)]
+trees = {}
+for _ in range(M):
+    r, c, a = map(int, input().split())
+    trees[r, c] = [a]
 ground = [[5]*N for _ in range(N)]
-deads = []
 dr = (-1, -1, -1, 0, 0, 1, 1, 1)
 dc = (-1, 0, 1, -1, 1, -1, 0, 1)
-trees.sort(key=lambda x: x[2])
-
+deads = []
 def spring():
-    global deads
-    deads.clear()
-    for i, tree in enumerate(trees, 0):
-        if ground[tree[0]][tree[1]] < tree[2]:
-            deads.append(i)
-        else:
-            ground[tree[0]][tree[1]] -= tree[2]
-            tree[2] += 1
+    global M
+    for k, v in trees.items():
+        l = len(v)
+        if l>1: v.sort()
+        for i in range(l):
+            if ground[k[0]][k[1]] < v[i]:
+                deads.append(k)
+                M -= 1
+            else:
+                ground[k[0]][k[1]] -= v[i]
+                v[i] += 1
 def summer():
     while deads:
         r, c, a = trees.pop(deads.pop())
         ground[r][c] += a//2
+
 def autumn():
-    global trees
-    for tree in trees:
-        if not tree[2]%5:
-            for d in range(8):
-                nr = tree[0] + dr[d]
-                nc = tree[1] + dc[d]
-                if 0 <= nr < N and 0 <= nc < N:
-                    deads.append([nr, nc, 1])
-    trees = deads + trees
-
-def winter():
-    for i in range(N):
-        for j in range(N):
-            ground[i][j] += A[i][j]
-
-for i in range(K):
-    spring()
-    summer()
-    autumn()
-    winter()
-print(len(trees))
+    global M
+    for k, v in trees.items():
+        for a in v:
+            if not a%5:
+                for d in range(8):
+                    nr = k[0]+dr[d]
+                    nc = k[1]+dc[d]
+                    if 0<=nr<N and 0<=nc<N:
+                        M+=1
+                        deads.append
+#
+# def winter():
+#     for i in range(N):
+#         for j in range(N):
+#             ground[i][j] += A[i][j]
+spring()
+# for i in range(K):
+#     spring()
+#     summer()
+#     autumn()
+#     winter()
+# print(len(trees))

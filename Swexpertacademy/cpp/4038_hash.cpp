@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
-unsigned long long int M = 1000000007;
-long long int d[100001];
+long long int M = 1000000007;
+long long int d[100001]{};
 
 int main(){
     int T, bl, sl; cin>>T;
@@ -14,14 +14,17 @@ int main(){
         int cnt = 0;
         long long int shash = 0;  long long int bhash = 0;
         for(int i = 0; i<sl; i++){
-            if(!d[i]) d[i] = (d[i-1]*d[1])%M;
-            shash = (shash + S[i]*d[i])%M;
-            bhash = (bhash + B[i]*d[i])%M;
+            if(!d[i]) d[i] = (d[i-1]*259)%M;
+            shash = (shash + S[sl-i-1]*d[i])%M;
+            bhash = (bhash + B[sl-i-1]*d[i])%M;
         }
-        d[sl] = d[sl-1]*d[1];
+        if(!d[sl]) d[sl] = d[sl-1]*259;
+        
         for(int i=0; i<bl;i++){
             if(shash==bhash) cnt++;
-            bhash = (( bhash*d[1])%M + B[i+sl] - B[i]*d[sl] + M )%M;
+            bhash = ((( bhash*259 + B[i+sl])%M - B[i]*d[sl])%M+M)%M;
+            //if(bhash<0)
+//            bhash = (bhash+M)%M;
         }
         if(shash==bhash) cnt++;
         cout<<"#"<<tc<<" "<<cnt<<endl;
