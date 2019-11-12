@@ -663,6 +663,3 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/c++,java,xcode,python,pycharm,visualstudio,visualstudiocode
 
-.idea/
-.vscode/
-.gitignore
