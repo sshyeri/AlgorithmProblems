@@ -11,7 +11,10 @@ int main(){
 		in>>s;
 		int pe = 0, j = 0, cnt = 0;
 		for(int i=0; i<s.size();i++){
-			if (s[i] != s[j]) pe = i, j = 0, cnt = 0;
+			if (s[i] != s[j]) {
+				if (s[i] == s[0]) pe = i-1, j = 1;
+				else pe = i, j = 0, cnt = 0;
+			}
 			else if(j==pe) cnt++, j = 0;
 			else j++;
 		}

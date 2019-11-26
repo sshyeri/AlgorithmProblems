@@ -1,5 +1,5 @@
 #include <iostream>
-#include <fstream>
+#include <ifstream>
 using namespace std;
 
 string arr[1001];
@@ -16,12 +16,12 @@ int min(int i, int j, int k){
 	}
 }
 int main(){
-	ifstream in("input.txt");
+	freopen in("input.txt", "r", stdin);
 	int T;
-	in>>T;
+	cin>>T;
 	for(int tc=1; tc<=T;tc++){
 		int N;
-		in>>N;
+		cin>>N;
 		int maxc = 0;
 		for(int i=0; i<N;i++) in>>arr[i];
 		for(int i=0; i<N;i++) {
